@@ -41,14 +41,6 @@ class Pawn(override val board: Board, override val color: PieceColor, override v
     }
 
     /**
-     * Boolean of whether this piece has any valid moves.
-     */
-    override fun canMove(): Boolean {
-        val validMoves = canMoveTo()
-        return validMoves.isNotEmpty()
-    }
-
-    /**
      * Updates a piece's position with new position. If it is an occupied spot it will capture the occupying piece.
      * @param position The position to move to
      */

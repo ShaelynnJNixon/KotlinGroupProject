@@ -10,7 +10,10 @@ abstract class Piece(open val board: Board, open val color: PieceColor, open var
 
     // Functions
     abstract fun canMoveTo(): ArrayList<Pair<Int, Int>> // Returns an array of Int pairs
-    abstract fun canMove(): Boolean
+    fun canMove(): Boolean {
+        val validMoves = canMoveTo()
+        return validMoves.isNotEmpty()
+    }
     abstract fun moveTo(position: Pair<Int, Int>)
 
     override fun toString(): String {
