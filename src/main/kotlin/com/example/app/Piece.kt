@@ -3,7 +3,6 @@ package com.example.app
 enum class PieceColor { WHITE, BLACK}
 enum class PieceType { KING, QUEEN, BISHOP, KNIGHT, ROOK, PAWN }
 
-//abstract class Piece(val owner: Player, val color: PieceColor, val position: Pair(Int, Int)) {
 abstract class Piece(open val board: Board, open val color: PieceColor, open var position: Pair<Int, Int>) {
 
     // Values
