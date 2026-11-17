@@ -1,35 +1,39 @@
 package com.example.app
 
-class BottomPawn(override val board: Board, override val color: PieceColor, override var position: Pair<Int, Int>) : Piece(board, color, position) {
+class Pawn(override val board: Board, override val color: PieceColor, override var position: Pair<Int, Int>) : Piece(board, color, position) {
     override val type: PieceType = PieceType.PAWN
+
+    // Determine the direction the pawn should move based on where it starts on the board
+    val verticalDirection = if (position.second > 4) 1 else -1
+    var hasMoved = false // Used when determining if the pawn can move 2 spots for its first move
 
     /**
      * Returns an ArrayList of spots (Pair(Int, Int)) that the piece could move to.
      */
     override fun canMoveTo(): ArrayList<Pair<Int, Int>> {
         val validMoves = ArrayList<Pair<Int,Int>>()
-        if (position.second == 1) { // If it hasn't moved, has option to move 2 spaces
-            if (board.spotIsFree(Pair(position.first, position.second+2))) {
-                validMoves.add(Pair(position.first, position.second+2))
+        if (!hasMoved) { // If it hasn't moved, has option to move 2 spaces
+            if (board.spotIsFree(Pair(position.first, position.second+(2*verticalDirection)))) {
+                validMoves.add(Pair(position.first, position.second+(2*verticalDirection)))
             }
         }
-        if (board.spotIsFree(Pair(position.first, position.second+1))) {
-            validMoves.add(Pair(position.first, position.second+1))
+        if (board.spotIsFree(Pair(position.first, position.second+(1*verticalDirection)))) {
+            validMoves.add(Pair(position.first, position.second+(1*verticalDirection)))
         }
         // Possible pawn diagonal moves (captures)
-        if (board.spotIsOccupied(Pair(position.first-1, position.second+1))) {
+        if (board.spotIsOccupied(Pair(position.first-1, position.second+(1*verticalDirection)))) {
             val otherPiece: Piece? = board.pieceAtPosition(position)
             if (otherPiece != null) {
                 if (otherPiece.color != this.color) {
-                    validMoves.add(Pair(position.first - 1, position.second + 1))
+                    validMoves.add(Pair(position.first - 1, position.second + (1*verticalDirection)))
                 }
             }
         }
-        if (board.spotIsOccupied(Pair(position.first+1, position.second+1))) {
+        if (board.spotIsOccupied(Pair(position.first+1, position.second+(1*verticalDirection)))) {
             val otherPiece: Piece? = board.pieceAtPosition(position)
             if (otherPiece != null) {
                 if (otherPiece.color != this.color) {
-                    validMoves.add(Pair(position.first + 1, position.second + 1))
+                    validMoves.add(Pair(position.first + 1, position.second + (1*verticalDirection)))
                 }
             }
         }
@@ -65,5 +69,13 @@ class BottomPawn(override val board: Board, override val color: PieceColor, over
             }
         }
         this.position = position
+        hasMoved = true
+        if (position.second == 7) {
+            promote()
+        }
+    }
+
+    fun promote() {
+        board.promote(this)
     }
 }

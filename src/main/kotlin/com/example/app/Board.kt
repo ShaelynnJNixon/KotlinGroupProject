@@ -46,4 +46,14 @@ class Board {
     fun capture(piece: Piece) {
         capture(piece.position)
     }
+
+    /**
+     * Promotes a pawn
+     */
+    fun promote(piece: Piece) {
+        if (piece.type != PieceType.PAWN) {
+            error("Invalid unit to promote")
+        }
+        // TODO: Promotion logic
+    }
 }
