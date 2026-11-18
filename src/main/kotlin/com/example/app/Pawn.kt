@@ -61,6 +61,12 @@ class Pawn(override val board: Board, override val color: PieceColor, override v
         }
     }
 
+    override fun threatens(): ArrayList<Pair<Int, Int>> {
+        val threatens = ArrayList<Pair<Int,Int>>()
+        threatens.add(Pair(position.first - 1, position.second + (1*verticalDirection)))
+        threatens.add(Pair(position.first + 1, position.second + (1*verticalDirection)))
+    }
+
     /**
      * Promotes this pawn after it has reached the end of the board
      */

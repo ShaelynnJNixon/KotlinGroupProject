@@ -47,6 +47,13 @@ abstract class Piece(open val board: Board, open val color: PieceColor, open var
         board.updatePosition(this, position)
     }
 
+    /**
+     * Returns an ArrayList of spots that this piece threatens (can capture). A piece does not need to be on the spot
+     * for it to count (that way we can calculate spots that might put a king in check if it moved there for example)
+     * @return ArrayList of spots that this piece threatens (can capture)
+     */
+    abstract open fun threatens(): ArrayList<Pair<Int, Int>>
+
     override fun toString(): String {
         return "Color: $color\nType: $type\nPosition: $position"
     }
