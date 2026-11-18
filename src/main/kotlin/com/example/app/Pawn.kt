@@ -7,9 +7,6 @@ class Pawn(override val board: Board, override val color: PieceColor, override v
     val verticalDirection = if (position.second > 4) 1 else -1
     var hasMoved = false // Used when determining if the pawn can move 2 spots for its first move
 
-    /**
-     * Returns an ArrayList of spots (Pair(Int, Int)) that the piece could move to.
-     */
     override fun canMoveTo(): ArrayList<Pair<Int, Int>> {
         val validMoves = ArrayList<Pair<Int,Int>>()
         if (!hasMoved) { // If it hasn't moved, has option to move 2 spaces
@@ -40,10 +37,6 @@ class Pawn(override val board: Board, override val color: PieceColor, override v
         return validMoves
     }
 
-    /**
-     * Updates a piece's position with new position. If it is an occupied spot it will capture the occupying piece.
-     * @param position The position to move to
-     */
     override fun moveTo(position: Pair<Int, Int>) {
         if (position.first !in 0..7 || position.second !in 0..7) {
             error("Position out of bounds")
