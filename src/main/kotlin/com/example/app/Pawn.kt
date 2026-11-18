@@ -56,15 +56,20 @@ class Pawn(override val board: Board, override val color: PieceColor, override v
         this.position = position
         board.updatePosition(this, position)
         hasMoved = true
-        if (position.second == 7) {
+        if (position.second == 0 || position.second == 7) {
             promote()
         }
     }
 
     override fun threatens(): ArrayList<Pair<Int, Int>> {
         val threatens = ArrayList<Pair<Int,Int>>()
-        threatens.add(Pair(position.first - 1, position.second + (1*verticalDirection)))
-        threatens.add(Pair(position.first + 1, position.second + (1*verticalDirection)))
+        if (position.first-1 > -1) {
+            threatens.add(Pair(position.first - 1, position.second + (1 * verticalDirection)))
+        }
+        if (position.first+1 < 8) {
+            threatens.add(Pair(position.first + 1, position.second + (1 * verticalDirection)))
+        }
+        return threatens
     }
 
     /**
