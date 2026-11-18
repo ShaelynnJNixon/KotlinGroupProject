@@ -32,7 +32,16 @@ class Board {
     }
 
     /**
-     * Captures the piece at the given position.
+     * Updates a pieces position in the board
+     * @param piece The piece that will be updated in the board
+     * @param position The position the piece is now at
+     */
+    fun updatePosition(piece: Piece, position: Pair<Int, Int>) {
+        //TODO:
+    }
+
+    /**
+     * Captures the piece at the given position
      * @param position The position of the piece to capture
      */
     fun capture(position: Pair<Int, Int>) {

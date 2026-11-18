@@ -61,12 +61,16 @@ class Pawn(override val board: Board, override val color: PieceColor, override v
             }
         }
         this.position = position
+        board.updatePosition(this, position)
         hasMoved = true
         if (position.second == 7) {
             promote()
         }
     }
 
+    /**
+     * Promotes this pawn after it has reached the end of the board
+     */
     fun promote() {
         board.promote(this)
     }
