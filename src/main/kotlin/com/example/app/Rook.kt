@@ -100,10 +100,20 @@ class Rook(override val board: Board, override val color: PieceColor, override v
     }
 
     /**
-     * Function for setting the hasMoved property of this rook
+     * Function for setting the hasMoved property of this rook.
+     * This will only ever be set to true and likely only is used by the king's castle move.
      * @param hasMoved a boolean of what this rooks hasMoved should be set to
      */
     fun setHasMoved(hasMoved: Boolean) {
-        this.hasMoved = hasMoved // This will only ever be set to true and likely only is used by the king's castle move
+        this.hasMoved = hasMoved
+    }
+
+    /**
+     * Function for setting the position property of this rook
+     * This will only ever be used because of a king's castle move.
+     * @param position the position to set this rook to
+     */
+    fun updatePosition(position: Pair<Int, Int>) {
+        this.position = position
     }
 }
