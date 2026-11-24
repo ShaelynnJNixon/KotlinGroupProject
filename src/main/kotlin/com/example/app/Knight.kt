@@ -27,6 +27,8 @@ class Knight(override val board: Board, override val color: PieceColor, override
                 if (otherPiece != null) {
                     if (otherPiece.color != this.color) {
                         validMoves.add(move)
+                    } else {
+                        continue
                     }
                 }
             }
