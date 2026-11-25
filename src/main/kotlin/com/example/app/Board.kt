@@ -100,4 +100,25 @@ class Board {
     fun capture(piece: Piece) {
         capture(piece.position)
     }
+    
+    /**
+     * Promotes piece passed
+     * @param piece The piece to promote
+     */
+    fun promote(piece: Piece) {
+        if (piece.type != PieceType.PAWN) {
+            error("Invalid unit to promote")
+        }
+        if (pieceChosen == PieceType.QUEEN) { //some way of devising what piece was chosen in the gui needs to be passed to this method or avaiable
+            piece.type = PieceType.QUEEN
+        } else if (pieceChosen == PieceType.KNIGHT) {
+            piece.type = PieceType.KNIGHT
+        } else if (pieceChosen == PieceType.BISHOP) {
+            piece.type = PieceType.BISHOP
+        } else if (pieceChosen == PieceType.ROOK) {
+            piece.type = PieceType.ROOK
+        } else {
+            error("Invalid piece chosen for promotion target")
+        }
+    }
 }
