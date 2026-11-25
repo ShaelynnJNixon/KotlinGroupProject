@@ -121,4 +121,29 @@ class Board {
             error("Invalid piece chosen for promotion target")
         }
     }
+
+    /**
+     * Returns a boolean based on whether the given spot is threatened by any pieces of the given color
+     * @param spot the spot that is being checked for threat
+     * @param color the color of the piece to check threat from
+     * @return true if the spot is threatened by the other color, false otherwise
+     */
+    fun spotIsThreatenedByColor(spot: Pair<Int, Int>, color: Color): Boolean {
+        var threatened = false
+        val (spotX, spotY) = spot
+        parentLoop@ for (x in 0..7) {
+            for (y in 0..7) {
+                if (positions[x][y] != null) {
+                    val pieceAtSpot = positions[x][y]
+                    if (pieceAtSpot!!.color == color) {
+                        if (spot in pieceAtSpot.threatens()) {
+                            threatened = true
+                            break@parentLoop
+                        }
+                    }
+                }
+            }
+        }
+        return threatened
+    }
 }
