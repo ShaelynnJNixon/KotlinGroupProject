@@ -3,8 +3,7 @@ package com.example.app
 fun PieceColor.opposite(): PieceColor =
     if (this == PieceColor.WHITE) PieceColor.BLACK else PieceColor.WHITE
 
-// If Board's constructor needs arguments, remove the "= Board()" default
-// and pass a Board in from wherever you create the GameState.
+
 class GameState(val board: Board = Board()) {
 
     //only this class can change the turn
