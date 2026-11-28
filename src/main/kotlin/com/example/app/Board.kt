@@ -40,7 +40,7 @@ class Board {
         val blackQueen = Queen(this, PieceColor.BLACK, Pair(3, 0))
         positions[3][0] = blackQueen
         val blackKing = King(this, PieceColor.BLACK, Pair(4, 0))
-        positions[4][0] = BlackKing
+        positions[4][0] = blackKing
         val secondBlackBishop = Bishop(this, PieceColor.BLACK, Pair(5, 0))
         positions[5][0] = secondBlackBishop
         val secondBlackKnight = Knight(this, PieceColor.BLACK, Pair(6, 0))
@@ -106,20 +106,25 @@ class Board {
      * @param piece The piece to promote
      */
     fun promote(piece: Piece) {
-        if (piece.type != PieceType.PAWN) {
-            error("Invalid unit to promote")
-        }
-        if (pieceChosen == PieceType.QUEEN) { //some way of devising what piece was chosen in the gui needs to be passed to this method or avaiable
-            piece.type = PieceType.QUEEN
-        } else if (pieceChosen == PieceType.KNIGHT) {
-            piece.type = PieceType.KNIGHT
-        } else if (pieceChosen == PieceType.BISHOP) {
-            piece.type = PieceType.BISHOP
-        } else if (pieceChosen == PieceType.ROOK) {
-            piece.type = PieceType.ROOK
-        } else {
-            error("Invalid piece chosen for promotion target")
-        }
+        // TODO: Make promotion work
+        /*  I commented it out because there wasn't a way for someone to choose a piece yet. In addition, we'll need to
+            do more than just change the piece's type.
+        */
+        error("promotion not implemented")
+//        if (piece.type != PieceType.PAWN) {
+//            error("Invalid unit to promote")
+//        }
+//        if (pieceChosen == PieceType.QUEEN) { //some way of devising what piece was chosen in the gui needs to be passed to this method or avaiable
+//            piece.type = PieceType.QUEEN
+//        } else if (pieceChosen == PieceType.KNIGHT) {
+//            piece.type = PieceType.KNIGHT
+//        } else if (pieceChosen == PieceType.BISHOP) {
+//            piece.type = PieceType.BISHOP
+//        } else if (pieceChosen == PieceType.ROOK) {
+//            piece.type = PieceType.ROOK
+//        } else {
+//            error("Invalid piece chosen for promotion target")
+//        }
     }
 
     /**
@@ -128,7 +133,7 @@ class Board {
      * @param color the color of the piece to check threat from
      * @return true if the spot is threatened by the other color, false otherwise
      */
-    fun spotIsThreatenedByColor(spot: Pair<Int, Int>, color: Color): Boolean {
+    fun spotIsThreatenedByColor(spot: Pair<Int, Int>, color: PieceColor): Boolean {
         var threatened = false
         val (spotX, spotY) = spot
         parentLoop@ for (x in 0..7) {

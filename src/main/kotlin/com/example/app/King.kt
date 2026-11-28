@@ -57,14 +57,14 @@ class King(override val board: Board, override val color: PieceColor, override v
                 (!board.spotIsThreatenedByColor(Pair(x-1, y), oppositeColor) && !board.spotIsThreatenedByColor(Pair(x-2, y), oppositeColor))
                 ) {
                 if (board.spotIsOccupied(Pair(x-3, y)) && board.pieceAtPosition(Pair(x-3, y))!!.type == PieceType.ROOK) { // If the spot third to the left of the king is a rook
-                    val rook = board.pieceAtPosition(Pair(x-3, y))
-                    if (!rook.hasMoved()) {
+                    val rook = board.pieceAtPosition(Pair(x-3, y)) as Rook
+                    if (!rook.hasMoved) {
                         validMoves.add(Pair(x-2, y))
                     }
                 } else if (board.spotIsFree(Pair(x-3, y))) { // If the third spot to the left of the king is empty
                     if (board.spotIsOccupied(Pair(x-4, y)) && board.pieceAtPosition(Pair(x-4, y))!!.type == PieceType.ROOK) { // If the spot fourth to the left of the king is a rook
-                        val rook = board.pieceAtPosition(Pair(x-4, y))
-                        if (!rook.hasMoved()) {
+                        val rook = board.pieceAtPosition(Pair(x-4, y)) as Rook
+                        if (!rook.hasMoved) {
                             validMoves.add(Pair(x-2, y))
                         }
                     }
@@ -75,14 +75,14 @@ class King(override val board: Board, override val color: PieceColor, override v
                 (!board.spotIsThreatenedByColor(Pair(x+1, y), oppositeColor) && !board.spotIsThreatenedByColor(Pair(x+2, y), oppositeColor))
             ) {
                 if (board.spotIsOccupied(Pair(x+3, y)) && board.pieceAtPosition(Pair(x+3, y))!!.type == PieceType.ROOK) { // If the spot third to the right of the king is a rook
-                    val rook = board.pieceAtPosition(Pair(x+3, y))
-                    if (!rook.hasMoved()) {
+                    val rook = board.pieceAtPosition(Pair(x+3, y)) as Rook
+                    if (!rook.hasMoved) {
                         validMoves.add(Pair(x+2, y))
                     }
                 } else if (board.spotIsFree(Pair(x+3, y))) { // If the third spot to the right of the king is empty
                     if (board.spotIsOccupied(Pair(x+4, y)) && board.pieceAtPosition(Pair(x+4, y))!!.type == PieceType.ROOK) { // If the spot fourth to the right of the king is a rook
-                        val rook = board.pieceAtPosition(Pair(x+4, y))
-                        if (!rook.hasMoved()) {
+                        val rook = board.pieceAtPosition(Pair(x+4, y)) as Rook
+                        if (!rook.hasMoved) {
                             validMoves.add(Pair(x+2, y))
                         }
                     }
@@ -115,24 +115,24 @@ class King(override val board: Board, override val color: PieceColor, override v
                 board.spotIsOccupied(Pair(this.position.first-3,this.position.second)) &&
                 board.pieceAtPosition(Pair(this.position.first-3,this.position.second))!!.type == PieceType.ROOK)
             {
-                rook = board.pieceAtPosition(Pair(this.position.first-3,this.position.second))!!
+                board.pieceAtPosition(Pair(this.position.first-3,this.position.second))!! as Rook
             } else {
-                rook = board.pieceAtPosition(Pair(this.position.first-4,this.position.second))!!
+                board.pieceAtPosition(Pair(this.position.first-4,this.position.second))!! as Rook
             }
-            rook.setPosition(Pair(this.position.first-1,this.position.second))
+            rook.updatePosition(Pair(this.position.first-1,this.position.second))
             board.updatePosition(rook, Pair(this.position.first-1,this.position.second))
-            rook.setHasMoved(true)
+            rook.hasMoved = true
         } else if (position.first == this.position.first+2) { // Castle right
             val rook = if (
                 board.spotIsOccupied(Pair(this.position.first+3,this.position.second)) &&
                 board.pieceAtPosition(Pair(this.position.first+3,this.position.second))!!.type == PieceType.ROOK) {
-                board.pieceAtPosition(Pair(this.position.first+3,this.position.second))!!
+                board.pieceAtPosition(Pair(this.position.first+3,this.position.second))!! as Rook
             } else {
-                board.pieceAtPosition(Pair(this.position.first+4,this.position.second))!!
+                board.pieceAtPosition(Pair(this.position.first+4,this.position.second))!! as Rook
             }
-            rook.setPosition(Pair(this.position.first+1,this.position.second))
+            rook.updatePosition(Pair(this.position.first+1,this.position.second))
             board.updatePosition(rook, Pair(this.position.first+1,this.position.second))
-            rook.setHasMoved(true)
+            rook.hasMoved = true
         }
 
         this.position = position

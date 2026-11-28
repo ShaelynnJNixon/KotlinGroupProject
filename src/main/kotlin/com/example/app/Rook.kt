@@ -91,22 +91,22 @@ class Rook(override val board: Board, override val color: PieceColor, override v
         return threatens
     }
 
-    /**
-     * Returns a boolean based on whether the rook has made any moves yet
-     * @return true if it has moved, false otherwise
-     */
-    fun hasMoved(): Boolean {
-        return hasMoved
-    }
-
-    /**
-     * Function for setting the hasMoved property of this rook.
-     * This will only ever be set to true and likely only is used by the king's castle move.
-     * @param hasMoved a boolean of what this rooks hasMoved should be set to
-     */
-    fun setHasMoved(hasMoved: Boolean) {
-        this.hasMoved = hasMoved
-    }
+//    /**
+//     * Returns a boolean based on whether the rook has made any moves yet
+//     * @return true if it has moved, false otherwise
+//     */
+//    fun getHasMoved(): Boolean {
+//        return hasMoved
+//    }
+//
+//    /**
+//     * Function for setting the hasMoved property of this rook.
+//     * This will only ever be set to true and likely only is used by the king's castle move.
+//     * @param hasMoved a boolean of what this rooks hasMoved should be set to
+//     */
+//    fun setHasMoved(hasMoved: Boolean) {
+//        this.hasMoved = hasMoved
+//    }
 
     /**
      * Function for setting the position property of this rook
