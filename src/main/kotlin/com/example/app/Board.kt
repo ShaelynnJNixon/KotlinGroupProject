@@ -100,7 +100,7 @@ class Board {
     fun capture(piece: Piece) {
         capture(piece.position)
     }
-
+    
     /**
      * Promotes piece passed
      * @param piece The piece to promote
