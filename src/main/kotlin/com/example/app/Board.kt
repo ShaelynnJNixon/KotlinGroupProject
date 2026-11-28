@@ -39,7 +39,7 @@ class Board {
         positions[2][0] = firstBlackBishop
         val blackQueen = Queen(this, PieceColor.BLACK, Pair(3, 0))
         positions[3][0] = blackQueen
-        val blackKing = King(this.PieceColor.BLACK, Pair(4, 0))
+        val blackKing = King(this, PieceColor.BLACK, Pair(4, 0))
         positions[4][0] = BlackKing
         val secondBlackBishop = Bishop(this, PieceColor.BLACK, Pair(5, 0))
         positions[5][0] = secondBlackBishop
